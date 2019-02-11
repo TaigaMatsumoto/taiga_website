@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/taiga_website/static/media/me_fishing.52f425ca.jpeg"
   },
   {
-    "revision": "7024ac49ba6a4e82d06f",
+    "revision": "1bf6119b38ba4e643651",
     "url": "/taiga_website/static/css/main.6177570e.chunk.css"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = [
     "url": "/taiga_website/static/js/runtime~main.b8edf928.js"
   },
   {
-    "revision": "5c44e78b5ee160daf1f5",
-    "url": "/taiga_website/static/js/2.5c44e78b.chunk.js"
+    "revision": "6170ad6e6ca754de7955",
+    "url": "/taiga_website/static/js/2.6170ad6e.chunk.js"
   },
   {
     "revision": "91efaac556095ea868a5275cd0543720",
@@ -24,8 +24,8 @@ self.__precacheManifest = [
     "url": "/taiga_website/static/media/resume_taiga_matsumoto.6d2248be.pdf"
   },
   {
-    "revision": "7024ac49ba6a4e82d06f",
-    "url": "/taiga_website/static/js/main.7024ac49.chunk.js"
+    "revision": "1bf6119b38ba4e643651",
+    "url": "/taiga_website/static/js/main.1bf6119b.chunk.js"
   },
   {
     "revision": "037edb6962e83f564afd64695b564dbb",
@@ -48,7 +48,7 @@ self.__precacheManifest = [
     "url": "/taiga_website/static/media/bg_image_one_sunrise.e2e569b7.jpg"
   },
   {
-    "revision": "9d86fda8ce1a4d93ecef3e94545a89af",
+    "revision": "49080fec98d983ac4e3b0a75d6788653",
     "url": "/taiga_website/index.html"
   }
 ];
