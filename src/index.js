@@ -12,11 +12,11 @@ import store from "./redux/store/store";
 import NotFound from "./components/404/404";
 const url = "https://taigamatsumoto.github.io/taiga_website";
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={store} basename={process.env.PUBLIC_URL}>
     <BrowserRouter>
       <Switch>
-        <Route path={`${url}`} component={App} exact />
-        <Route path={`${url}/blog`} component={BlogPage} exact />
+        <Route path={`/`} component={App} exact />
+        {/* <Route path={`${url}/blog`} component={BlogPage} exact /> */}
         {/* <Route path="/blog/newPost" path={`${url}/blog/newPost`} component={NewPost} exact /> */}
         {/* <Route exact path="/blog/showPost/:id" component={PostTemplte} /> */}
         <Route path="*" component={NotFound} />
