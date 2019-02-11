@@ -10,10 +10,10 @@ import { Provider } from "react-redux";
 import store from "./redux/store/store";
 // import PostTemplte from "./templates/postTemplate";
 import NotFound from "./components/404/404";
-const url = "https://taigamatsumoto.github.io/taiga_website";
+
 ReactDOM.render(
-  <Provider store={store} basename={process.env.PUBLIC_URL}>
-    <BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
       <Switch>
         <Route path={`/`} component={App} exact />
         {/* <Route path={`${url}/blog`} component={BlogPage} exact /> */}
