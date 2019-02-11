@@ -1,16 +1,16 @@
-import React from 'react'
-import styled from 'styled-components'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import CardMedia from '@material-ui/core/CardMedia'
-import CardHeader from '@material-ui/core/CardHeader'
-import Avatar from '@material-ui/core/Avatar'
-import { withStyles } from '@material-ui/core/styles'
-import classnames from 'classnames'
-import githubMark from '../../images/GitHub-Mark-64px.png'
-import ImgOne from '../../images/portfolio_image/portfolio_image_one.png'
-import ImgTwo from '../../images/portfolio_image/react&redux.png'
-import Grid from '@material-ui/core/Grid'
+import React from "react";
+import styled from "styled-components";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardHeader from "@material-ui/core/CardHeader";
+import Avatar from "@material-ui/core/Avatar";
+import { withStyles } from "@material-ui/core/styles";
+import classnames from "classnames";
+import githubMark from "../../images/GitHub-Mark-64px.png";
+import ImgOne from "../../images/portfolio_image/portfolio_image_one.png";
+import ImgTwo from "../../images/portfolio_image/react&redux.png";
+import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
   root: {
@@ -20,27 +20,29 @@ const styles = theme => ({
   cardHolder: {
     display: "flex",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    height: "40%"
   },
   card: {
-    width: "60%"
+    width: "60%",
+    height: "100%"
   },
   header: {
-    fontSize: '1.6vw',
+    fontSize: "1.6vw"
   },
   media: {
-    height: 0,
-    paddingTop: '56.25%', // 16:9
-    width: '80%',
-  },
-})
+    height: "30%",
+    paddingTop: "56.25%", // 16:9
+    width: "80%"
+  }
+});
 class Works extends React.Component {
   render() {
-    const { classes } = this.props
+    const { classes } = this.props;
     return (
       // <WorksWrapperParent>
       // <WorksWrapper>
-      < Grid container className={classes.root} spacing={16} justify="center" >
+      <Grid container className={classes.root} spacing={16} justify="center">
         <Grid item md={6} xs={12} className={classes.cardHolder}>
           <Card className={classes.card} name="card">
             <CardHeader
@@ -53,7 +55,7 @@ class Works extends React.Component {
                 </a>
               }
               classes={{
-                title: classes.header,
+                title: classes.header
               }}
               title="Weather Checker"
             />
@@ -76,7 +78,7 @@ class Works extends React.Component {
                 </a>
               }
               classes={{
-                title: classes.header,
+                title: classes.header
               }}
               title="React Redux demo"
             />
@@ -87,11 +89,10 @@ class Works extends React.Component {
             />
           </Card>
         </Grid>
-
-      </Grid >
-      //    </WorksWrapper> 
+      </Grid>
+      //    </WorksWrapper>
       //  </WorksWrapperParent>
-    )
+    );
   }
 }
 
@@ -106,4 +107,4 @@ class Works extends React.Component {
 //   flex-direction: row;
 //   justify-content: space-around;
 // `
-export default withStyles(styles)(Works)
+export default withStyles(styles)(Works);

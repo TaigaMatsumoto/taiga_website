@@ -27,6 +27,13 @@ const styles = theme => ({
     cursor: 'pointer',
     zIndex: '100'
   },
+  aboutMeContainerMain: {
+    height: '60vh',
+
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '5%'
+    }
+  },
   aboutMeInfoMainContainer: {
     display: 'flex',
     width: '100%',
@@ -190,7 +197,7 @@ class AboutMe extends React.Component {
               </div>
             </div>
           </Grid>
-          <Grid xs={12} item style={{ height: '60vh' }}>
+          <Grid xs={12} item className={classes.aboutMeContainerMain}>
             <div className={classes.aboutMeInfoMainContainer}>
               <div
                 style={{

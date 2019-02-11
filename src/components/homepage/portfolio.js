@@ -106,9 +106,9 @@ const Portfolio = props => {
               </PortfolioLink>
             </div>
           </Grid>
-          <Grid item md={12} xs={12}>
+          {/* <Grid item md={12} xs={12}>
             <Works />
-          </Grid>
+          </Grid> */}
         </Grid>
       </PortfolioWrapper>
     </PortfolioWrapperParent>
