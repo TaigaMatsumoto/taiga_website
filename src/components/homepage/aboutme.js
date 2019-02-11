@@ -26,6 +26,74 @@ const styles = theme => ({
   articleNumStyle: {
     cursor: 'pointer',
     zIndex: '100'
+  },
+  aboutMeInfoMainContainer: {
+    display: 'flex',
+    width: '100%',
+    height: '100%',
+    [theme.breakpoints.up('md')]: {
+      flexDirection: 'row'
+    },
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center'
+    }
+  },
+  image: {
+    height: 'auto',
+    [theme.breakpoints.up('md')]: {
+      width: '30vw',
+      marginLeft: '10vw'
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '60vw'
+    }
+  },
+  contentContainer: {
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    [theme.breakpoints.up('md')]: {
+      width: '50%'
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '90%'
+    }
+  },
+  content: {
+    height: '100%',
+    width: '80%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    [theme.breakpoints.up('md')]: {
+      marginRight: '10%'
+    },
+    [theme.breakpoints.down('sm')]: {}
+  },
+  contentPara: {
+    fontSize: '2vw',
+    lineHeight: '1.5',
+    color: 'black',
+    fontFamily: 'Source Sans Pro, sans-serif',
+    [theme.breakpoints.up('md')]: {
+      fontSize: '2vw',
+      lineHeight: '1.5'
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '4vw'
+    }
+  },
+  articleNavContainer: {
+    width: '100px',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '3%'
+    }
   }
 });
 class AboutMe extends React.Component {
@@ -101,14 +169,7 @@ class AboutMe extends React.Component {
             xs={12}
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
           >
-            <div
-              style={{
-                width: '100px',
-                display: 'flex',
-                flexDirection: 'row',
-                justifyContent: 'space-around'
-              }}
-            >
+            <div className={classes.articleNavContainer}>
               <div
                 className={classNames(`${classes.articleNumStyle}`)}
                 onClick={() => this.selectArticlesNum(this.articleIndexArray[0])}
@@ -130,7 +191,7 @@ class AboutMe extends React.Component {
             </div>
           </Grid>
           <Grid xs={12} item style={{ height: '60vh' }}>
-            <div style={{ display: 'flex', width: '100%', height: '100%' }}>
+            <div className={classes.aboutMeInfoMainContainer}>
               <div
                 style={{
                   height: '100%',
@@ -140,40 +201,11 @@ class AboutMe extends React.Component {
                   alignItems: 'center'
                 }}
               >
-                <img
-                  src={images[this.state.aboutMeComponent.image]}
-                  style={{ width: 'auto', height: '65%', marginLeft: '10vw' }}
-                />
+                <img src={images[this.state.aboutMeComponent.image]} className={classes.image} />
               </div>
-              <div
-                style={{
-                  height: '100%',
-                  width: '50%',
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}
-              >
-                <div
-                  style={{
-                    height: '100%',
-                    width: '80%',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    marginRight: '10%'
-                  }}
-                >
-                  <p
-                    style={{
-                      fontSize: '2vw',
-                      lineHeight: '1.5',
-                      color: 'black',
-                      fontFamily: 'Source Sans Pro, sans-serif'
-                    }}
-                  >
-                    {this.state.aboutMeComponent.content}
-                  </p>
+              <div className={classes.contentContainer}>
+                <div className={classes.content}>
+                  <p className={classes.contentPara}>{this.state.aboutMeComponent.content}</p>
                 </div>
               </div>
             </div>

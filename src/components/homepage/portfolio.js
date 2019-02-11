@@ -5,7 +5,7 @@ import MediaQuery from 'react-responsive';
 import Grid from '@material-ui/core/Grid';
 import Works from '../portfolio_components/works';
 import { withStyles } from '@material-ui/core/styles';
-
+import classNames from 'classnames';
 const styles = theme => ({
   root: {
     flexGrow: 1
@@ -22,6 +22,24 @@ const styles = theme => ({
   logo: {
     [theme.breakpoints.down('md')]: {
       paddingLeft: '70%'
+    }
+  },
+  mainContainer: {
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '3%'
+    }
+  },
+  gitLinkContainer: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    width: '550px',
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column'
+    }
+  },
+  gitIconContainer: {
+    [theme.breakpoints.down('sm')]: {
+      flexDirection: 'column'
     }
   }
 });
@@ -63,7 +81,12 @@ const Portfolio = props => {
     // </PortfolioWrapperParent>
     <PortfolioWrapperParent id="portfolio">
       <PortfolioWrapper>
-        <Grid container className={classes.root} spacing={40} justify="center">
+        <Grid
+          container
+          className={classNames(`${classes.root}`, `${classes.mainContainer}`)}
+          spacing={40}
+          justify="center"
+        >
           <Grid
             xs={12}
             style={{
@@ -72,14 +95,8 @@ const Portfolio = props => {
               alignItems: 'center'
             }}
           >
-            <div
-              style={{
-                display: 'flex',
-                justifyContent: 'space-around',
-                width: '550px'
-              }}
-            >
-              <PortfolioIconWrapper>
+            <div className={classes.gitLinkContainer}>
+              <PortfolioIconWrapper className={classes.gitIconContainer}>
                 <PortfolioIcon alt="github Mark" src={githubMark} />
               </PortfolioIconWrapper>
               <PortfolioLink>
@@ -112,7 +129,10 @@ const PortfolioWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  // margin-top: 10%;
+
+  @media screen and (max-width: 960px) {
+    margin-top: 3%;
+  }
 `;
 const PortfolioContent = styled.div`
   width: 100%;
@@ -131,7 +151,9 @@ const PortfolioIconWrapper = styled.div`
   // display: flex;
   // justify-content: center;
   @media screen and (max-width: 960px) {
-    padding-left: 20%;
+    display: flex;
+    align-items: center;
+    justify-contents: center;
   }
 `;
 const PortfolioIcon = styled.img`
@@ -143,7 +165,7 @@ const PortfolioIcon = styled.img`
   @media screen and (max-width: 767px) {
     width: auto;
     height: 8vw;
-    margin-right: 15%;
+    // margin-right: 15%;
   }
   height: auto;
 `;
