@@ -7,7 +7,7 @@ import Portfolio from "../components/homepage/portfolio";
 import AboutMe from "../components/homepage/aboutme";
 import Footer from "../components/homepage/footer";
 import styled from "styled-components";
-import bgImage from "../images/bg_image_one_sunrise.jpg";
+// import bgImage from "../images/bg_image_one_sunrise.jpg";
 import source from "../static/Sail-Away.mp4";
 import logo from "../static/logo.png";
 import Grid from "@material-ui/core/Grid";
@@ -15,6 +15,7 @@ import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
 import { timingSafeEqual } from "crypto";
 import resume from "../resume/resume_taiga_matsumoto.pdf";
+import bgImage from "../images/wallpaper/ocean_wallpaper.jpg";
 // import { StaticQuery, graphql } from 'gatsby'
 // import Img from 'gatsby-image'
 // import { Provider } from 'react-redux'
@@ -24,8 +25,9 @@ const styles = theme => ({
     flexGrow: 1
   },
   main: {
-    // width: "100%",
-    // height: "100%"
+    width: "100%",
+    height: "100%"
+    // margin: "0"
   },
   makeItFlex: {
     display: "flex"
@@ -55,19 +57,20 @@ const styles = theme => ({
     },
     [theme.breakpoints.down("sm")]: {
       marginTop: "5%",
-      width: "50vw"
+      width: "55vw"
     }
   },
   navContainer: {
     zIndex: "100",
     cursor: "pointer",
+
     [theme.breakpoints.up("md")]: {
       fontSize: "1.5vw"
     }
   },
 
   aTag: {
-    color: "white",
+    color: "black",
     textDecoration: "none",
     "&:hover": {
       borderBottom: "3px solid white"
@@ -143,6 +146,21 @@ class App extends React.Component {
     const { classes } = this.props;
     return (
       <HomePage name="home page">
+        <div
+          style={{
+            filter: `blur(8px)`,
+            position: "absolute",
+            zIndex: "-999",
+            /* Full height */
+            height: `100%`,
+            width: "100%",
+            backgroundImage: `url(${bgImage})`,
+            /* Center and scale the image nicely */
+            backgroundPosition: "center",
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover"
+          }}
+        />
         <Grid
           container
           className={[classes.root, classes.main]}
@@ -159,7 +177,6 @@ class App extends React.Component {
             }}
             className={classNames(
               `${classes.makeItFlex}`,
-              // `${classes.verticallyBottom}`,
               `${classes.horizontallyCenter}`
             )}
           >
@@ -203,12 +220,7 @@ class App extends React.Component {
               >
                 <a className={classNames(`${classes.aTag}`)}>Portfolio</a>
               </div>
-              {/* <div
-                onClick={() => this.changeComponentState(this.blogName)}
-                className={classes.navContainer}
-              >
-                <a className={classNames(`${classes.aTag}`)}>Blog</a>
-              </div> */}
+
               <div className={classes.navContainer}>
                 <a
                   className={classNames(`${classes.aTag}`)}
@@ -224,8 +236,6 @@ class App extends React.Component {
             xs={12}
             style={{
               height: "70vh"
-              // marginBottom: "15%"
-              // backgroundColor: "yellow"
             }}
             className={classNames(
               `${classes.makeItFlex}`,
@@ -234,8 +244,13 @@ class App extends React.Component {
             )}
           >
             <div
-              name="slected cmponent"
-              style={{ width: "100%", height: "100%" }}
+              style={{
+                width: "100%",
+                height: "70vh",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+              }}
               className={classNames(
                 `${classes.makeItFlex}`,
                 `${classes.verticallyCenter}`,
@@ -246,34 +261,6 @@ class App extends React.Component {
             </div>
           </Grid>
         </Grid>
-        <div
-          style={{
-            position: "absolute",
-            width: "100vw",
-            height: "100vh",
-            textAlign: "center",
-            overflow: "hidden",
-            top: "0",
-            left: "0",
-            zIndex: "-999"
-          }}
-        >
-          <video
-            autoPlay
-            loop
-            muted
-            style={{
-              width: "inherit",
-              height: "inherit",
-              filter: "blur(15px)",
-              objectFit: "cover",
-              transform: "scale(1.06)" /* scale up to hide the edge blur */,
-              zIndex: "-999"
-            }}
-          >
-            <source src={source} type="video/mp4" />
-          </video>
-        </div>
       </HomePage>
     );
   }
@@ -330,8 +317,8 @@ const VideoContainer = styled.div`
   // filter: blur(5px);
 `;
 const HomePage = styled.div`
-  // width: 100%;
-  // height: 100%;
+  width: 100%;
+  height: 100%;
 `;
 
 export default withStyles(styles)(App);

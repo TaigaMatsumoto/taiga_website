@@ -85,6 +85,7 @@ const styles = theme => ({
     lineHeight: '1.5',
     color: 'black',
     fontFamily: 'Source Sans Pro, sans-serif',
+    color: 'white',
     [theme.breakpoints.up('md')]: {
       fontSize: '2vw',
       lineHeight: '1.5'

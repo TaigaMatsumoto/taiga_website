@@ -12,15 +12,37 @@ import Typed from 'typed.js';
 
 const styles = theme => ({
   container: {
-    // width: '100%',
-    // height: '100%'
-    marginBottom: ' 10%'
+    width: '100%',
+    // height: '100%',
+    marginBottom: ' 10%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   fontColor: {
     color: 'black'
+  },
+  animatedText: {
+    whiteSpace: 'pre',
+    color: 'white',
+    fontFamily: 'Special Elite, cursive',
+    [theme.breakpoints.up('md')]: {
+      fontSize: '5vw'
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '5vw'
+    }
   }
 });
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      string: '',
+      temps: ['hello', 'enjoy', 'bye']
+    };
+    this.myTyped = this.myTyped.bind(this);
+  }
   componentDidMount() {
     // If you want to pass more options as props, simply add
     // your desired props to this destructuring assignment.
@@ -33,17 +55,62 @@ class Home extends React.Component {
     };
     // this.el refers to the <span> in the render() method
     this.typed = new Typed(this.el, options);
+
+    this.myTyped();
+  }
+  myTyped() {
+    let index = 0;
+    const { temps } = this.state;
+    for (let i = 0; i < temps.length; i++) {
+      const addCharToArr = () => {
+        this.setState(prevState => {
+          console.log(temps[i][index]);
+          console.log(`loop index is ${i}`);
+          console.log(`string index is ${index}`);
+          return { string: prevState.string + temps[i][index] };
+        });
+        // console.log('HIiIIIIIIIIIIIIii');
+        index++;
+        let id = setTimeout(addCharToArr, 1000);
+        if (index == temps[i].length) {
+          clearTimeout(id);
+        }
+      };
+      const reduceCharFromArr = () => {
+        this.setState(prevState => ({
+          string: prevState.string.substring(0, index - 1)
+        }));
+        index--;
+        let id = setTimeout(reduceCharFromArr);
+        if (index <= 0) {
+          clearTimeout(id);
+        }
+      };
+      addCharToArr();
+      reduceCharFromArr();
+    }
   }
   render() {
     const { classes } = this.props;
     return (
       <div id="home" className={classes.container}>
-        <span
-          style={{ whiteSpace: 'pre', fontFamily: 'Special Elite, cursive', fontSize: '5vw' }}
-          ref={el => {
-            this.el = el;
+        <div
+          style={{
+            width: '80%',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            wordWrap: 'normal'
           }}
-        />
+        >
+          {/* <p>{this.state.string}</p> */}
+          <span
+            className={classes.animatedText}
+            ref={el => {
+              this.el = el;
+            }}
+          />
+        </div>
       </div>
     );
   }
