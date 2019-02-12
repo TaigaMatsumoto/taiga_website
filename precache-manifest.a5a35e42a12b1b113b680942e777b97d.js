@@ -4,7 +4,7 @@ self.__precacheManifest = [
     "url": "/taiga_website/static/media/me_fishing.52f425ca.jpeg"
   },
   {
-    "revision": "8f0752a945ab3b4c6dce",
+    "revision": "e84f19867eb123ff98f0",
     "url": "/taiga_website/static/css/main.080d1ea1.chunk.css"
   },
   {
@@ -24,8 +24,8 @@ self.__precacheManifest = [
     "url": "/taiga_website/static/media/resume_taiga_matsumoto.6d2248be.pdf"
   },
   {
-    "revision": "8f0752a945ab3b4c6dce",
-    "url": "/taiga_website/static/js/main.8f0752a9.chunk.js"
+    "revision": "e84f19867eb123ff98f0",
+    "url": "/taiga_website/static/js/main.e84f1986.chunk.js"
   },
   {
     "revision": "037edb6962e83f564afd64695b564dbb",
@@ -48,7 +48,7 @@ self.__precacheManifest = [
     "url": "/taiga_website/static/media/tennis_with_mates.1c6aea80.jpg"
   },
   {
-    "revision": "be00dc623a2b42ae2c2dac353294a077",
+    "revision": "6e9ae2e9390aabf732733117b0ae99f0",
     "url": "/taiga_website/index.html"
   }
 ];
