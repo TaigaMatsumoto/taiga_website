@@ -116,6 +116,10 @@ class AboutMe extends React.Component {
       aboutMeComponent: {
         image: null,
         content: null
+      },
+      canvas: {
+        width: 640,
+        height: 245
       }
     };
     this.aboutMeJson = [
@@ -138,6 +142,8 @@ class AboutMe extends React.Component {
     this.articleIndexArray = [0, 1, 2];
     this.selectArticlesNum = this.selectArticlesNum.bind(this);
     this.importAll = this.importAll.bind(this);
+    this.showImage = this.showImage.bind(this);
+    this.getDataUrl = this.getDataUrl.bind(this);
   }
   importAll(r) {
     let images = {};
@@ -146,15 +152,50 @@ class AboutMe extends React.Component {
     });
     return images;
   }
+  showImage(imagePath) {
+    const canvas = this.refs.canvas;
+    const ctx = canvas.getContext('2d');
+    const img = this.refs.image;
+    const { width, height } = this.state;
+    let base64;
+    // canvas.width = width;
+    // canvas.height = height;
+    // let img = document.createElement('image');
+    // let ctx = canvas.getContext('2d');
+    base64 = this.getDataUrl(imagePath);
+    img.setAttribute('src', `data:image/png;base64, ${base64}`);
+    // const result = await function() {
+    //   return new Promise(resolve => {
+    //     img.onload = () => resolve(img);
+    //     img.setAttribute('src', `data:image/png;base64, ${base64}`);
+    //   });
 
+    // };
+
+    // result().then(res => {
+    //   ctx.scale(width / res.width, height / res.height);
+    //   ctx.drawImage(res, 0, 0);
+    // });
+  }
+  getDataUrl(imagePath) {
+    const canvas = document.createElement('canvas');
+    let ctx = canvas.getContext('2d');
+    ctx.drawImage(imagePath, 0, 0);
+    return canvas.toDataURL();
+  }
   componentDidMount() {
+    const images = this.importAll(
+      require.context('../../images/aboutMe', false, /\.(png|jpe?g|svg)$/)
+    );
     this.setState({
       aboutMeComponent: {
         image: this.aboutMeJson[0].image,
         content: this.aboutMeJson[0].content
       }
     });
+    this.showImage(images[this.state.aboutMeComponent.image]);
   }
+
   selectArticlesNum(selectedNum) {
     this.setState({
       aboutMeComponent: {
@@ -209,7 +250,13 @@ class AboutMe extends React.Component {
                   alignItems: 'center'
                 }}
               >
-                <img src={images[this.state.aboutMeComponent.image]} className={classes.image} />
+                <canvas
+                  ref="canvas"
+                  width={this.state.canvas.width}
+                  height={this.state.canvas.height}
+                />
+                <img ref="image" />
+                {/* <img src={images[this.state.aboutMeComponent.image]} className={classes.image} /> */}
               </div>
               <div className={classes.contentContainer}>
                 <div className={classes.content}>

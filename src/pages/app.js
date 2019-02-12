@@ -148,19 +148,31 @@ class App extends React.Component {
       <HomePage name="home page">
         <div
           style={{
-            filter: `blur(8px)`,
             position: "absolute",
             zIndex: "-999",
             /* Full height */
             height: `100%`,
             width: "100%",
-            backgroundImage: `url(${bgImage})`,
-            /* Center and scale the image nicely */
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover"
+            overflow: "hidden"
           }}
-        />
+        >
+          <div
+            style={{
+              filter: `blur(8px)`,
+              position: "absolute",
+              zIndex: "-999",
+              /* Full height */
+              height: `100%`,
+              width: "100%",
+              transform: "scale(1.1)",
+              backgroundImage: `url(${bgImage})`,
+              /* Center and scale the image nicely */
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover"
+            }}
+          />
+        </div>
         <Grid
           container
           className={[classes.root, classes.main]}
