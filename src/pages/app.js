@@ -180,7 +180,7 @@ class App extends React.Component {
     console.log(aboutMeJson[0].content);
     console.log(number);
     return (
-      <HomePage name="home page">
+      <HomePage name="home page" id="home">
         <Grid
           container
           className={[classes.root, classes.main]}
@@ -223,13 +223,19 @@ class App extends React.Component {
               )}
             >
               <div className={classes.navContainer}>
-                <a className={classNames(`${classes.aTag}`)}>Home</a>
+                <a href="#home" className={classNames(`${classes.aTag}`)}>
+                  Home
+                </a>
               </div>
               <div className={classes.navContainer}>
-                <a className={classNames(`${classes.aTag}`)}>About</a>
+                <a href="#aboutme" className={classNames(`${classes.aTag}`)}>
+                  About
+                </a>
               </div>
               <div className={classes.navContainer}>
-                <a className={classNames(`${classes.aTag}`)}>Portfolio</a>
+                <a href="#portfolio" className={classNames(`${classes.aTag}`)}>
+                  Portfolio
+                </a>
               </div>
 
               <div className={classes.navContainer}>

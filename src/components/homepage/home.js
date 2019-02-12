@@ -93,7 +93,7 @@ class Home extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div id="home" className={classes.container}>
+      <div className={classes.container}>
         <div
           style={{
             width: '80%',
