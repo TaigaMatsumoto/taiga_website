@@ -107,109 +107,71 @@ const styles = theme => ({
 class AboutMe extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      contents: {
-        articleOne: true,
-        articleTwo: false,
-        articleThree: false
-      },
-      aboutMeComponent: {
-        image: null,
-        content: null
-      },
-      canvas: {
-        width: 640,
-        height: 245
-      }
-    };
-    this.aboutMeJson = [
-      {
-        content:
-          'Hello. I am Taiga Matsumoto. I am Computer Science student at QUT.\n  My hobby is playing tennis, travel, and reading IT articles as well!',
-        image: 'taiga_pic_one.jpg'
-      },
-      {
-        content:
-          'My hobby is playing and watching tennis! I joined in QUT tennis, and also Brisbane Tennis community. I went to watch Brisbane International Tennis 2018/2019, and Australian Open 2018',
-        image: 'tennis_with_mates.jpg'
-      },
-      {
-        content:
-          'I also join in many different Hackathons in Brisbane :) I like to interact with new people to get new knowledge and information. This picture is taken when I joined in Brisbane Mobile App Hackathon and our team won the first place !',
-        image: 'brisbane_mobile_hackathon.jpg'
-      }
-    ];
-    this.articleIndexArray = [0, 1, 2];
-    this.selectArticlesNum = this.selectArticlesNum.bind(this);
-    this.importAll = this.importAll.bind(this);
-    this.showImage = this.showImage.bind(this);
-    this.getDataUrl = this.getDataUrl.bind(this);
+    this.articleOne = 0;
+    this.articleTwo = 1;
+    this.articleThree = 2;
   }
-  importAll(r) {
-    let images = {};
-    r.keys().map((item, index) => {
-      images[item.replace('./', '')] = r(item);
-    });
-    return images;
-  }
-  showImage(imagePath) {
-    const canvas = this.refs.canvas;
-    const ctx = canvas.getContext('2d');
-    const img = this.refs.image;
-    const { width, height } = this.state;
-    let base64;
-    // canvas.width = width;
-    // canvas.height = height;
-    // let img = document.createElement('image');
-    // let ctx = canvas.getContext('2d');
-    base64 = this.getDataUrl(imagePath);
-    img.setAttribute('src', `data:image/png;base64, ${base64}`);
-    // const result = await function() {
-    //   return new Promise(resolve => {
-    //     img.onload = () => resolve(img);
-    //     img.setAttribute('src', `data:image/png;base64, ${base64}`);
-    //   });
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     contents: {
+  //       articleOne: true,
+  //       articleTwo: false,
+  //       articleThree: false
+  //     },
+  //     aboutMeComponent: {
+  //       image: null,
+  //       content: null
+  //     },
+  //     canvas: {
+  //       width: 640,
+  //       height: 245
+  //     }
+  //   };
+  //   this.aboutMeJson = [
+  //     {
+  //       content:
+  //         'Hello. I am Taiga Matsumoto. I am Computer Science student at QUT.\n  My hobby is playing tennis, travel, and reading IT articles as well!',
+  //       image: 'taiga_pic_one.jpg'
+  //     },
+  //     {
+  //       content:
+  //         'My hobby is playing and watching tennis! I joined in QUT tennis, and also Brisbane Tennis community. I went to watch Brisbane International Tennis 2018/2019, and Australian Open 2018',
+  //       image: 'tennis_with_mates.jpg'
+  //     },
+  //     {
+  //       content:
+  //         'I also join in many different Hackathons in Brisbane :) I like to interact with new people to get new knowledge and information. This picture is taken when I joined in Brisbane Mobile App Hackathon and our team won the first place !',
+  //       image: 'brisbane_mobile_hackathon.jpg'
+  //     }
+  //   ];
+  //   this.articleIndexArray = [0, 1, 2];
+  //   this.selectArticlesNum = this.selectArticlesNum.bind(this);
+  //   this.importAll = this.importAll.bind(this);
+  //   // this.showImage = this.showImage.bind(this);
+  //   this.getDataUrl = this.getDataUrl.bind(this);
+  //   this.articleOne = 0;
+  //   this.articleTwo = 1;
+  //   this.articleThree = 2;
+  // }
+  // importAll(r) {
+  //   let images = {};
+  //   r.keys().map((item, index) => {
+  //     images[item.replace('./', '')] = r(item);
+  //   });
+  //   return images;
+  // }
 
-    // };
-
-    // result().then(res => {
-    //   ctx.scale(width / res.width, height / res.height);
-    //   ctx.drawImage(res, 0, 0);
-    // });
-  }
-  getDataUrl(imagePath) {
-    const canvas = document.createElement('canvas');
-    let ctx = canvas.getContext('2d');
-    ctx.drawImage(imagePath, 0, 0);
-    return canvas.toDataURL();
-  }
-  componentDidMount() {
-    const images = this.importAll(
-      require.context('../../images/aboutMe', false, /\.(png|jpe?g|svg)$/)
-    );
-    this.setState({
-      aboutMeComponent: {
-        image: this.aboutMeJson[0].image,
-        content: this.aboutMeJson[0].content
-      }
-    });
-    this.showImage(images[this.state.aboutMeComponent.image]);
-  }
-
-  selectArticlesNum(selectedNum) {
-    this.setState({
-      aboutMeComponent: {
-        image: this.aboutMeJson[selectedNum].image,
-        content: this.aboutMeJson[selectedNum].content
-      }
-    });
-  }
   render() {
     const { classes } = this.props;
-    const images = this.importAll(
-      require.context('../../images/aboutMe', false, /\.(png|jpe?g|svg)$/)
-    );
-    console.log(images);
+    // const { changeComponentState, image, json } = this.props;
+    const { json, currentNumber, images, changeComponentState } = this.props;
+    console.log(currentNumber);
+    console.log(json);
+    const currentContent = json[currentNumber].content;
+    const currentImage = images[json[currentNumber].image];
+    // console.log(this.props.about.content);
+    console.log(this.props);
     return (
       <AboutMeWrapperParent id="aboutme">
         <Grid container className={classNames(`${classes.root}`)}>
@@ -221,19 +183,19 @@ class AboutMe extends React.Component {
             <div className={classes.articleNavContainer}>
               <div
                 className={classNames(`${classes.articleNumStyle}`)}
-                onClick={() => this.selectArticlesNum(this.articleIndexArray[0])}
+                onClick={() => changeComponentState(this.articleOne)}
               >
                 1
               </div>
               <div
                 className={classNames(`${classes.articleNumStyle}`)}
-                onClick={() => this.selectArticlesNum(this.articleIndexArray[1])}
+                onClick={() => changeComponentState(this.articleTwo)}
               >
                 2
               </div>
               <div
                 className={classNames(`${classes.articleNumStyle}`)}
-                onClick={() => this.selectArticlesNum(this.articleIndexArray[2])}
+                onClick={() => changeComponentState(this.articleThree)}
               >
                 3
               </div>
@@ -250,17 +212,11 @@ class AboutMe extends React.Component {
                   alignItems: 'center'
                 }}
               >
-                <canvas
-                  ref="canvas"
-                  width={this.state.canvas.width}
-                  height={this.state.canvas.height}
-                />
-                <img ref="image" />
-                {/* <img src={images[this.state.aboutMeComponent.image]} className={classes.image} /> */}
+                <img src={currentImage} className={classes.image} />
               </div>
               <div className={classes.contentContainer}>
                 <div className={classes.content}>
-                  <p className={classes.contentPara}>{this.state.aboutMeComponent.content}</p>
+                  <p className={classes.contentPara}>{currentContent}</p>
                 </div>
               </div>
             </div>

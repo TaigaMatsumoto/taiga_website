@@ -100,7 +100,28 @@ class App extends React.Component {
           "I am Taiga",
           "Please enjoy my place :)"
         ]
-      }
+      },
+      aboutMe: {
+        images: null,
+        number: 0
+      },
+      aboutMeJson: [
+        {
+          content:
+            "Hello. I am Taiga Matsumoto. I am Computer Science student at QUT.\n  My hobby is playing tennis, travel, and reading IT articles as well!",
+          image: "taiga_pic_one.jpg"
+        },
+        {
+          content:
+            "My hobby is playing and watching tennis! I joined in QUT tennis, and also Brisbane Tennis community. I went to watch Brisbane International Tennis 2018/2019, and Australian Open 2018",
+          image: "tennis_with_mates.jpg"
+        },
+        {
+          content:
+            "I also join in many different Hackathons in Brisbane :) I like to interact with new people to get new knowledge and information. This picture is taken when I joined in Brisbane Mobile App Hackathon and our team won the first place !",
+          image: "brisbane_mobile_hackathon.jpg"
+        }
+      ]
     };
     this.homeName = "home";
     this.aboutName = "about";
@@ -108,6 +129,26 @@ class App extends React.Component {
     this.blogName = "blog";
     this.selectComponent = this.selectComponent.bind(this);
     this.changeComponentState = this.changeComponentState.bind(this);
+    this.importAll = this.importAll.bind(this);
+  }
+  componentDidMount() {
+    const images = this.importAll(
+      require.context("../images/aboutMe", false, /\.(png|jpe?g|svg)$/)
+    );
+
+    this.setState(prevState => ({
+      aboutMe: {
+        ...prevState.aboutMe,
+        images: images
+      }
+    }));
+  }
+  importAll(r) {
+    let images = {};
+    r.keys().map((item, index) => {
+      images[item.replace("./", "")] = r(item);
+    });
+    return images;
   }
   selectComponent() {
     const { home, about, portfolio, blog } = this.state.nav;
@@ -122,57 +163,24 @@ class App extends React.Component {
       return <Blog />;
     }
   }
-  changeComponentState(componentName) {
-    const navNames = Object.keys(this.state.nav);
-    for (let i = 0; i < navNames.length; i++) {
-      if (this.state.nav[navNames[i]] === true) {
-        this.setState(prevState => ({
-          nav: {
-            ...prevState.nav,
-            [navNames[i]]: false
-          }
-        }));
-        break;
-      }
-    }
-    this.setState(prevStata => ({
-      nav: {
-        ...prevStata.nav,
-        [componentName]: true
+  changeComponentState(number) {
+    this.setState(prevState => ({
+      aboutMe: {
+        ...prevState.aboutMe,
+        number: number
       }
     }));
   }
+
   render() {
     const { classes } = this.props;
+    const { aboutMeJson } = this.state;
+    const { images, number } = this.state.aboutMe;
+    // const { number } = this.state.aboutMe;
+    console.log(aboutMeJson[0].content);
+    console.log(number);
     return (
       <HomePage name="home page">
-        <div
-          style={{
-            position: "absolute",
-            zIndex: "-999",
-            /* Full height */
-            height: `100%`,
-            width: "100%",
-            overflow: "hidden"
-          }}
-        >
-          <div
-            style={{
-              filter: `blur(8px)`,
-              position: "absolute",
-              zIndex: "-999",
-              /* Full height */
-              height: `100%`,
-              width: "100%",
-              transform: "scale(1.1)",
-              backgroundImage: `url(${bgImage})`,
-              /* Center and scale the image nicely */
-              backgroundPosition: "center",
-              backgroundRepeat: "no-repeat",
-              backgroundSize: "cover"
-            }}
-          />
-        </div>
         <Grid
           container
           className={[classes.root, classes.main]}
@@ -214,22 +222,13 @@ class App extends React.Component {
                 `${classes.navMainContainer}`
               )}
             >
-              <div
-                onClick={() => this.changeComponentState(this.homeName)}
-                className={classes.navContainer}
-              >
+              <div className={classes.navContainer}>
                 <a className={classNames(`${classes.aTag}`)}>Home</a>
               </div>
-              <div
-                onClick={() => this.changeComponentState(this.aboutName)}
-                className={classes.navContainer}
-              >
+              <div className={classes.navContainer}>
                 <a className={classNames(`${classes.aTag}`)}>About</a>
               </div>
-              <div
-                onClick={() => this.changeComponentState(this.portfolioName)}
-                className={classes.navContainer}
-              >
+              <div className={classes.navContainer}>
                 <a className={classNames(`${classes.aTag}`)}>Portfolio</a>
               </div>
 
@@ -261,7 +260,8 @@ class App extends React.Component {
                 height: "70vh",
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "center"
+                justifyContent: "center",
+                flexDirection: "column"
               }}
               className={classNames(
                 `${classes.makeItFlex}`,
@@ -269,8 +269,22 @@ class App extends React.Component {
                 `${classes.horizontallyCenter}`
               )}
             >
-              {this.selectComponent()}
+              <Home string={this.state.home.string} />
             </div>
+          </Grid>
+          <Grid xs={12}>
+            {this.state.aboutMe.images != null ? (
+              <AboutMe
+                changeComponentState={this.changeComponentState}
+                images={images}
+                // json={aboutMeJson[0].content}
+                json={aboutMeJson}
+                currentNumber={number}
+              />
+            ) : null}
+          </Grid>
+          <Grid xs={12}>
+            <Portfolio />
           </Grid>
         </Grid>
       </HomePage>
@@ -285,52 +299,21 @@ const Logo = styled.img`
   z-index: 1;
   margin-bottom: 2%;
 `;
-const Video = styled.video`
-  // height: auto;
-  // float: left;
-  // left: 0;
-  // top: 0;
-  // padding: none;
-  // position: fixed; /* optional depending on what you want to do in your app */
-  // scale: 1.5;
-  z-index: -999;
-  // position: fixed;
-  // right: 0;
-  // bottom: 0;
-  // min-width: 100%;
-  // min-height: 100%;
-  // margin: -5px -10px -10px -5px;
-  width: inherit;
-  height: inherit;
-  -o-filter: blur(15px);
-  filter: blur(15px);
-  object-fit: cover;
-  transform: scale(1.06); /* scale up to hide the edge blur */
-  .;
-`;
-const VideoContainer = styled.div`
-  // position: absolute;
-  width: 100vw;
-  height: 100vh;
-  text-align: center;
-  overflow: hidden;
-  top: 0px;
-  left: 0px;
-  min-width: 100%;
-  min-height: 100%;
-  // width: auto;
-  // height: auto;
-  z-index: -1000;
-  // overflow: hidden;
-  // -webkit-filter: blur(5px);
-  // -moz-filter: blur(5px);
-  // -o-filter: blur(5px);
-  // -ms-filter: blur(5px);
-  // filter: blur(5px);
-`;
 const HomePage = styled.div`
   width: 100%;
   height: 100%;
+  &::before {
+    width: 100%;
+    height: 100%;
+    content: "";
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: -1;
+    display: block;
+    background-image: url(${bgImage});
+    filter: blur(5px);
+  }
 `;
 
 export default withStyles(styles)(App);

@@ -117,7 +117,7 @@ const Portfolio = props => {
 
 const PortfolioWrapperParent = styled.div`
   width: 100%;
-  height: 100%;
+  height: 100vh;
   // background-color: rgba(255, 255, 255, 0.7);
   display: flex;
   justify-content: center;
