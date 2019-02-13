@@ -1,10 +1,10 @@
 self.__precacheManifest = [
   {
-    "revision": "52f425cad717196b4f2a92694d943dc8",
-    "url": "/taiga_website/static/media/me_fishing.52f425ca.jpeg"
+    "revision": "6d2248be766cc2414432527b0ce16b8a",
+    "url": "/taiga_website/static/media/resume_taiga_matsumoto.6d2248be.pdf"
   },
   {
-    "revision": "e84f19867eb123ff98f0",
+    "revision": "8e83375fa747b1576de1",
     "url": "/taiga_website/static/css/main.080d1ea1.chunk.css"
   },
   {
@@ -12,20 +12,24 @@ self.__precacheManifest = [
     "url": "/taiga_website/static/js/runtime~main.b8edf928.js"
   },
   {
-    "revision": "258303a2c66460464c5b",
-    "url": "/taiga_website/static/js/2.258303a2.chunk.js"
+    "revision": "cab60e9b26550cbc55a6",
+    "url": "/taiga_website/static/js/2.cab60e9b.chunk.js"
+  },
+  {
+    "revision": "1aa588bfe78603d83832fe891bd16584",
+    "url": "/taiga_website/static/media/ocean_wallpaper.1aa588bf.jpg"
   },
   {
     "revision": "91efaac556095ea868a5275cd0543720",
     "url": "/taiga_website/static/media/taiga_pic_one.91efaac5.jpg"
   },
   {
-    "revision": "6d2248be766cc2414432527b0ce16b8a",
-    "url": "/taiga_website/static/media/resume_taiga_matsumoto.6d2248be.pdf"
+    "revision": "8e83375fa747b1576de1",
+    "url": "/taiga_website/static/js/main.8e83375f.chunk.js"
   },
   {
-    "revision": "e84f19867eb123ff98f0",
-    "url": "/taiga_website/static/js/main.e84f1986.chunk.js"
+    "revision": "52f425cad717196b4f2a92694d943dc8",
+    "url": "/taiga_website/static/media/me_fishing.52f425ca.jpeg"
   },
   {
     "revision": "037edb6962e83f564afd64695b564dbb",
@@ -36,10 +40,6 @@ self.__precacheManifest = [
     "url": "/taiga_website/static/media/portfolio_image_one.a4f36cc5.png"
   },
   {
-    "revision": "1aa588bfe78603d83832fe891bd16584",
-    "url": "/taiga_website/static/media/ocean_wallpaper.1aa588bf.jpg"
-  },
-  {
     "revision": "0cc47e8c07273774596da4b3049bf6bc",
     "url": "/taiga_website/static/media/Sail-Away.0cc47e8c.mp4"
   },
@@ -48,7 +48,7 @@ self.__precacheManifest = [
     "url": "/taiga_website/static/media/tennis_with_mates.1c6aea80.jpg"
   },
   {
-    "revision": "6e9ae2e9390aabf732733117b0ae99f0",
+    "revision": "6ef197e8595379ea51a3dd9b5fcf77b6",
     "url": "/taiga_website/index.html"
   }
 ];
