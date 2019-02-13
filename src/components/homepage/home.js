@@ -9,7 +9,10 @@ import resume from '../../resume/resume_taiga_matsumoto.pdf';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import Typed from 'typed.js';
-
+// import styled from 'styled-components';
+import classNames from 'classnames';
+import bgImage from '../../images/wallpaper/ocean_wallpaper.jpg';
+import logo from '../../static/logo.png';
 const styles = theme => ({
   container: {
     width: '100%',
@@ -19,8 +22,48 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  homeContainer: {
+    width: '100%',
+    height: '100%',
+    backgroundImage: `url(${bgImage})`
+  },
+  navContainer: {
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    [theme.breakpoints.up('md')]: {
+      width: '30vw',
+      fontSize: '2vw'
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '50vw',
+      fontSize: '3vw'
+    }
+  },
+  logo: {
+    [theme.breakpoints.up('md')]: {
+      marginTop: '2vh'
+    },
+    [theme.breakpoints.down('sm')]: {
+      marginTop: '5vh',
+      height: '20vh',
+      width: 'auto'
+    }
+  },
+  nav: {
+    zIndex: '100',
+    cursor: 'pointer'
+  },
   fontColor: {
     color: 'black'
+  },
+  aTag: {
+    color: 'black',
+    textDecoration: 'none',
+    '&:hover': {
+      borderBottom: '3px solid white'
+    },
+    zIndex: '100'
   },
   animatedText: {
     whiteSpace: 'pre',
@@ -93,27 +136,132 @@ class Home extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.container}>
-        <div
-          style={{
-            width: '80%',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
-            wordWrap: 'normal'
-          }}
-        >
-          {/* <p>{this.state.string}</p> */}
-          <span
-            className={classes.animatedText}
-            ref={el => {
-              this.el = el;
+      <HomeContainer>
+        <Grid container className={classes.homeContainer}>
+          <Grid
+            item
+            xs={12}
+            style={{
+              height: '35vh',
+              display: 'flex',
+              justifyContent: 'center'
+              // alignItems: 'flex-end'
             }}
-          />
-        </div>
-      </div>
+            className={classNames(`${classes.makeItFlex}`, `${classes.horizontallyCenter}`)}
+          >
+            <Grid container>
+              <Grid item xs={12}>
+                <div
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center'
+                  }}
+                >
+                  <Logo src={logo} className={classes.logo} />
+                </div>
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+              >
+                <div className={classes.navContainer}>
+                  <div className={classes.nav}>
+                    <a href="#home" className={classNames(`${classes.aTag}`)}>
+                      Home
+                    </a>
+                  </div>
+                  <div className={classes.nav}>
+                    <a href="#aboutme" className={classNames(`${classes.aTag}`)}>
+                      About
+                    </a>
+                  </div>
+                  <div className={classes.nav}>
+                    <a href="#portfolio" className={classNames(`${classes.aTag}`)}>
+                      Portfolio
+                    </a>
+                  </div>
+
+                  <div className={classes.nav}>
+                    <a className={classNames(`${classes.aTag}`)} target="_blank" href={resume}>
+                      Resume
+                    </a>
+                  </div>
+                </div>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            style={{
+              height: '65vh',
+              display: 'center',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'
+            }}
+          >
+            <div
+              style={{
+                width: '80%',
+                display: 'flex',
+                justifyContent: 'center',
+                // alignItems: 'center',
+                wordWrap: 'normal',
+                marginBottom: '10vh'
+              }}
+            >
+              {/* <p>{this.state.string}</p> */}
+              <span
+                className={classes.animatedText}
+                ref={el => {
+                  this.el = el;
+                }}
+              />
+            </div>
+          </Grid>
+        </Grid>
+      </HomeContainer>
     );
   }
 }
+// const NavContainer = styled.div`
+//   display: flex;
+//   justify-content: space-around;
+//   align-items: center;
+//   flex-direction: row;
+//   @media (min-width: 960px) {
+//   }
+// `;
+
+const Logo = styled.img`
+  // position: absolute;
+  width: auto;
+  height: 50%;
+  z-index: 1;
+  // margin-bottom: 2%;
+`;
+const HomeContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  // margin-bottom: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+const HomeWallPaper = styled.div`
+  width: 100%;
+  height: 100%;
+  background-image: url(${bgImage});
+  // filter: blur(8px);
+  tranform: scale(1.1);
+`;
 
 export default withStyles(styles)(Home);

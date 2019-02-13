@@ -92,6 +92,17 @@ const Portfolio = props => {
             style={{
               display: 'flex',
               justifyContent: 'center',
+              alignItems: 'center',
+              fontSize: '50px'
+            }}
+          >
+            <h3>Portfolio</h3>
+          </Grid>
+          <Grid
+            xs={12}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
               alignItems: 'center'
             }}
           >

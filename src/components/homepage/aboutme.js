@@ -85,7 +85,7 @@ const styles = theme => ({
     lineHeight: '1.5',
     color: 'black',
     fontFamily: 'Source Sans Pro, sans-serif',
-    color: 'white',
+    color: 'black',
     [theme.breakpoints.up('md')]: {
       fontSize: '2vw',
       lineHeight: '1.5'
@@ -102,6 +102,10 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       marginTop: '3%'
     }
+  },
+  aboutMeTitle: {
+    fontSize: '50px',
+    marginTop: '40%'
   }
 });
 class AboutMe extends React.Component {
@@ -174,52 +178,99 @@ class AboutMe extends React.Component {
     console.log(this.props);
     return (
       <AboutMeWrapperParent id="aboutme">
-        <Grid container className={classNames(`${classes.root}`)}>
+        <Grid container className={classNames(`${classes.root}`, `${classes.container}`)}>
           <Grid
             item
             xs={12}
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+            style={{
+              height: '30vh'
+            }}
           >
-            <div className={classes.articleNavContainer}>
-              <div
-                className={classNames(`${classes.articleNumStyle}`)}
-                onClick={() => changeComponentState(this.articleOne)}
-              >
-                1
-              </div>
-              <div
-                className={classNames(`${classes.articleNumStyle}`)}
-                onClick={() => changeComponentState(this.articleTwo)}
-              >
-                2
-              </div>
-              <div
-                className={classNames(`${classes.articleNumStyle}`)}
-                onClick={() => changeComponentState(this.articleThree)}
-              >
-                3
-              </div>
-            </div>
-          </Grid>
-          <Grid xs={12} item className={classes.aboutMeContainerMain}>
-            <div className={classes.aboutMeInfoMainContainer}>
-              <div
+            <Grid
+              container
+              style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+            >
+              <Grid
+                item
                 style={{
-                  height: '100%',
-                  width: '50%',
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center'
+                  // marginTop: '10vh'
                 }}
               >
-                <img src={currentImage} className={classes.image} />
-              </div>
-              <div className={classes.contentContainer}>
-                <div className={classes.content}>
-                  <p className={classes.contentPara}>{currentContent}</p>
+                <h3 className={classes.aboutMeTitle}>About Me</h3>
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '10vh'
+                }}
+              >
+                <div className={classes.articleNavContainer}>
+                  <div
+                    className={classNames(`${classes.articleNumStyle}`)}
+                    onClick={() => changeComponentState(this.articleOne)}
+                  >
+                    1
+                  </div>
+                  <div
+                    className={classNames(`${classes.articleNumStyle}`)}
+                    onClick={() => changeComponentState(this.articleTwo)}
+                  >
+                    2
+                  </div>
+                  <div
+                    className={classNames(`${classes.articleNumStyle}`)}
+                    onClick={() => changeComponentState(this.articleThree)}
+                  >
+                    3
+                  </div>
                 </div>
-              </div>
-            </div>
+              </Grid>
+            </Grid>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              height: '70vh'
+            }}
+          >
+            <Grid
+              container
+              style={{
+                height: '100%'
+              }}
+            >
+              <Grid item xs={12}>
+                <div className={classes.aboutMeInfoMainContainer}>
+                  <div
+                    style={{
+                      height: '100%',
+                      width: '50%',
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center'
+                    }}
+                  >
+                    <img src={currentImage} className={classes.image} />
+                  </div>
+                  <div className={classes.contentContainer}>
+                    <div className={classes.content}>
+                      <p className={classes.contentPara}>{currentContent}</p>
+                    </div>
+                  </div>
+                </div>
+              </Grid>
+            </Grid>
           </Grid>
         </Grid>
       </AboutMeWrapperParent>

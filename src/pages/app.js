@@ -181,78 +181,16 @@ class App extends React.Component {
     console.log(number);
     return (
       <HomePage name="home page" id="home">
+        {/* <HomePageSubContainer> */}
         <Grid
           container
           className={[classes.root, classes.main]}
           style={{ zIndex: "1" }}
         >
           <Grid
-            item
             xs={12}
             style={{
-              height: "25vh",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "flex-end"
-            }}
-            className={classNames(
-              `${classes.makeItFlex}`,
-              `${classes.horizontallyCenter}`
-            )}
-          >
-            <Logo src={logo} />
-          </Grid>
-          <Grid
-            item
-            xs={12}
-            style={{ height: "5vh" }}
-            className={classNames(
-              `${classes.makeItFlex}`,
-              `${classes.verticallyCenter}`,
-              `${classes.horizontallyCenter}`
-            )}
-          >
-            <div
-              className={classNames(
-                `${classes.makeItFlex}`,
-                `${classes.verticallyCenter}`,
-                `${classes.horizontallyCenter}`,
-                `${classes.flexDirectionRow}`,
-                `${classes.spaceAround}`,
-                `${classes.navMainContainer}`
-              )}
-            >
-              <div className={classes.navContainer}>
-                <a href="#home" className={classNames(`${classes.aTag}`)}>
-                  Home
-                </a>
-              </div>
-              <div className={classes.navContainer}>
-                <a href="#aboutme" className={classNames(`${classes.aTag}`)}>
-                  About
-                </a>
-              </div>
-              <div className={classes.navContainer}>
-                <a href="#portfolio" className={classNames(`${classes.aTag}`)}>
-                  Portfolio
-                </a>
-              </div>
-
-              <div className={classes.navContainer}>
-                <a
-                  className={classNames(`${classes.aTag}`)}
-                  target="_blank"
-                  href={resume}
-                >
-                  Resume
-                </a>
-              </div>
-            </div>
-          </Grid>
-          <Grid
-            xs={12}
-            style={{
-              height: "70vh"
+              height: "100%"
             }}
             className={classNames(
               `${classes.makeItFlex}`,
@@ -260,23 +198,7 @@ class App extends React.Component {
               `${classes.horizontallyCenter}`
             )}
           >
-            <div
-              style={{
-                width: "100%",
-                height: "70vh",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexDirection: "column"
-              }}
-              className={classNames(
-                `${classes.makeItFlex}`,
-                `${classes.verticallyCenter}`,
-                `${classes.horizontallyCenter}`
-              )}
-            >
-              <Home string={this.state.home.string} />
-            </div>
+            <Home string={this.state.home.string} />
           </Grid>
           <Grid xs={12}>
             {this.state.aboutMe.images != null ? (
@@ -293,6 +215,7 @@ class App extends React.Component {
             <Portfolio />
           </Grid>
         </Grid>
+        {/* </HomePageSubContainer> */}
       </HomePage>
     );
   }
@@ -306,6 +229,24 @@ const Logo = styled.img`
   margin-bottom: 2%;
 `;
 const HomePage = styled.div`
+  width: 100%;
+  height: 100%;
+  // overflow: hidden;
+  // &::before {
+  //   width: 100%;
+  //   height: 100%;
+  //   content: "";
+  //   position: fixed;
+  //   left: 0;
+  //   right: 0;
+  //   z-index: -1;
+  //   display: block;
+  //   background-image: url(${bgImage});
+  //   filter: blur(5px);
+  // }
+`;
+
+const HomePageSubContainer = styled.div`
   width: 100%;
   height: 100%;
   &::before {
