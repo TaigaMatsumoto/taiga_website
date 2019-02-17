@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import Works from '../portfolio_components/works';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
+import Typography from '@material-ui/core/Typography';
 const styles = theme => ({
   root: {
     flexGrow: 1
@@ -79,7 +80,7 @@ const Portfolio = props => {
     //     <Works />
     //   </PortfolioWrapper>
     // </PortfolioWrapperParent>
-    <PortfolioWrapperParent id="portfolio">
+    <PortfolioWrapperParent ref={props.refProp}>
       <PortfolioWrapper>
         <Grid
           container
@@ -88,6 +89,7 @@ const Portfolio = props => {
           justify="center"
         >
           <Grid
+            md={6}
             xs={12}
             style={{
               display: 'flex',
@@ -96,9 +98,12 @@ const Portfolio = props => {
               fontSize: '50px'
             }}
           >
-            <h3>Portfolio</h3>
+            <Typography component="h3" variant="h2" gutterBottom>
+              Portfolio
+            </Typography>
           </Grid>
           <Grid
+            md={6}
             xs={12}
             style={{
               display: 'flex',

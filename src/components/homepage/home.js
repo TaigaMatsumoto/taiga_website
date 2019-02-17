@@ -99,17 +99,18 @@ class Home extends React.Component {
     // this.el refers to the <span> in the render() method
     this.typed = new Typed(this.el, options);
 
-    this.myTyped();
+    // this.myTyped();
   }
   myTyped() {
     let index = 0;
     const { temps } = this.state;
+
     for (let i = 0; i < temps.length; i++) {
       const addCharToArr = () => {
         this.setState(prevState => {
-          console.log(temps[i][index]);
-          console.log(`loop index is ${i}`);
-          console.log(`string index is ${index}`);
+          // console.log(temps[i][index]);
+          // console.log(`loop index is ${i}`);
+          // console.log(`string index is ${index}`);
           return { string: prevState.string + temps[i][index] };
         });
         // console.log('HIiIIIIIIIIIIIIii');
@@ -135,8 +136,11 @@ class Home extends React.Component {
   }
   render() {
     const { classes } = this.props;
+    console.log(this.props);
+    const { aboutMeRef, homeRef, portfolioRef } = this.props.componentsRefs;
+    const { scrollDownToElement } = this.props;
     return (
-      <HomeContainer>
+      <HomeContainer ref={this.props.refProp}>
         <Grid container className={classes.homeContainer}>
           <Grid
             item
@@ -171,22 +175,15 @@ class Home extends React.Component {
                 }}
               >
                 <div className={classes.navContainer}>
-                  <div className={classes.nav}>
-                    <a href="#home" className={classNames(`${classes.aTag}`)}>
-                      Home
-                    </a>
+                  <div className={classes.nav} onClick={() => scrollDownToElement(homeRef)}>
+                    Home
                   </div>
-                  <div className={classes.nav}>
-                    <a href="#aboutme" className={classNames(`${classes.aTag}`)}>
-                      About
-                    </a>
+                  <div className={classes.nav} onClick={() => scrollDownToElement(aboutMeRef)}>
+                    About
                   </div>
-                  <div className={classes.nav}>
-                    <a href="#portfolio" className={classNames(`${classes.aTag}`)}>
-                      Portfolio
-                    </a>
+                  <div className={classes.nav} onClick={() => scrollDownToElement(portfolioRef)}>
+                    Portfolio
                   </div>
-
                   <div className={classes.nav}>
                     <a className={classNames(`${classes.aTag}`)} target="_blank" href={resume}>
                       Resume

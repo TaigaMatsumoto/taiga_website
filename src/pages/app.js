@@ -123,15 +123,22 @@ class App extends React.Component {
         }
       ]
     };
-    this.homeName = "home";
-    this.aboutName = "about";
-    this.portfolioName = "portfolio";
+    this.homeRef = React.createRef();
+    this.aboutMeRef = React.createRef();
+    this.portfolioRef = React.createRef();
+    this.componentsRefs = {
+      homeRef: this.homeRef,
+      aboutMeRef: this.aboutMeRef,
+      portfolioRef: this.portfolioRef
+    };
     this.blogName = "blog";
     this.selectComponent = this.selectComponent.bind(this);
     this.changeComponentState = this.changeComponentState.bind(this);
     this.importAll = this.importAll.bind(this);
   }
   componentDidMount() {
+    console.log(`ref is`);
+    console.log(this.componentsRefs.homeRef.current.offsetTop);
     const images = this.importAll(
       require.context("../images/aboutMe", false, /\.(png|jpe?g|svg)$/)
     );
@@ -163,6 +170,7 @@ class App extends React.Component {
       return <Blog />;
     }
   }
+
   changeComponentState(number) {
     this.setState(prevState => ({
       aboutMe: {
@@ -171,14 +179,18 @@ class App extends React.Component {
       }
     }));
   }
+  scrollDownToElement(ref) {
+    console.log(ref.current.offsetTop);
+    ref.current.scrollIntoView({ block: "start", behavior: "smooth" });
+  }
 
   render() {
     const { classes } = this.props;
     const { aboutMeJson } = this.state;
     const { images, number } = this.state.aboutMe;
     // const { number } = this.state.aboutMe;
-    console.log(aboutMeJson[0].content);
-    console.log(number);
+    // console.log(aboutMeJson[0].content);
+    // console.log(number);
     return (
       <HomePage name="home page" id="home">
         {/* <HomePageSubContainer> */}
@@ -188,6 +200,7 @@ class App extends React.Component {
           style={{ zIndex: "1" }}
         >
           <Grid
+            item
             xs={12}
             style={{
               height: "100%"
@@ -198,9 +211,23 @@ class App extends React.Component {
               `${classes.horizontallyCenter}`
             )}
           >
-            <Home string={this.state.home.string} />
+            <Home
+              string={this.state.home.string}
+              refProp={this.homeRef}
+              componentsRefs={this.componentsRefs}
+              scrollDownToElement={this.scrollDownToElement.bind(this)}
+            />
           </Grid>
-          <Grid xs={12}>
+          <Grid
+            xs={12}
+            item
+            style={{ height: "100vh" }}
+            className={classNames(
+              `${classes.makeItFlex}`,
+              `${classes.verticallyCenter}`,
+              `${classes.horizontallyCenter}`
+            )}
+          >
             {this.state.aboutMe.images != null ? (
               <AboutMe
                 changeComponentState={this.changeComponentState}
@@ -208,11 +235,12 @@ class App extends React.Component {
                 // json={aboutMeJson[0].content}
                 json={aboutMeJson}
                 currentNumber={number}
+                refProp={this.aboutMeRef}
               />
             ) : null}
           </Grid>
-          <Grid xs={12}>
-            <Portfolio />
+          <Grid xs={12} item style={{ height: "100vh" }}>
+            <Portfolio refProp={this.portfolioRef} />
           </Grid>
         </Grid>
         {/* </HomePageSubContainer> */}
@@ -221,46 +249,9 @@ class App extends React.Component {
   }
 }
 
-const Logo = styled.img`
-  // position: absolute;
-  width: auto;
-  height: 50%;
-  z-index: 1;
-  margin-bottom: 2%;
-`;
 const HomePage = styled.div`
   width: 100%;
   height: 100%;
-  // overflow: hidden;
-  // &::before {
-  //   width: 100%;
-  //   height: 100%;
-  //   content: "";
-  //   position: fixed;
-  //   left: 0;
-  //   right: 0;
-  //   z-index: -1;
-  //   display: block;
-  //   background-image: url(${bgImage});
-  //   filter: blur(5px);
-  // }
-`;
-
-const HomePageSubContainer = styled.div`
-  width: 100%;
-  height: 100%;
-  &::before {
-    width: 100%;
-    height: 100%;
-    content: "";
-    position: fixed;
-    left: 0;
-    right: 0;
-    z-index: -1;
-    display: block;
-    background-image: url(${bgImage});
-    filter: blur(5px);
-  }
 `;
 
 export default withStyles(styles)(App);

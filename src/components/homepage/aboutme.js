@@ -8,272 +8,178 @@ import AboutMeOne from './aboutMeComponents/aboutMeOne';
 import AboutMeTwo from './aboutMeComponents/aboutMeTwo';
 import AboutMeThree from './aboutMeComponents/aboutMeThree';
 import classNames from 'classnames';
+import Typography from '@material-ui/core/Typography';
 // import image from '../../images/aboutMe';
 // import aboutMeJson from './aboutMeComponents/aboutMeJson';
 const styles = theme => ({
-  root: {
-    flexGrow: 1
+  mainContainer: {
+    width: '80%',
+    height: '70%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   container: {
     width: '100%',
-    height: '100%'
+    height: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   item: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  articleNumStyle: {
-    cursor: 'pointer',
-    zIndex: '100'
-  },
-  aboutMeContainerMain: {
-    height: '60vh',
-
-    [theme.breakpoints.down('sm')]: {
-      marginTop: '5%'
-    }
-  },
-  aboutMeInfoMainContainer: {
-    display: 'flex',
-    width: '100%',
     height: '100%',
-    [theme.breakpoints.up('md')]: {
-      flexDirection: 'row'
-    },
-    [theme.breakpoints.down('sm')]: {
-      flexDirection: 'column',
-      justifyContent: 'center',
-      alignItems: 'center'
-    }
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
-  image: {
-    height: 'auto',
+  titleContainer: {
     [theme.breakpoints.up('md')]: {
-      width: '30vw',
-      marginLeft: '10vw'
+      height: '100%'
     },
     [theme.breakpoints.down('sm')]: {
-      width: '60vw'
+      height: '50%'
     }
   },
   contentContainer: {
-    height: '100%',
+    [theme.breakpoints.up('md')]: {
+      height: '100%'
+    },
+    [theme.breakpoints.down('sm')]: {
+      height: '50%'
+    }
+  },
+  logo: {
+    width: '40%',
+    height: 'auto'
+  },
+  navContainer: {
+    width: '50%',
+    display: 'flex',
+    alignItemsS: 'center'
+  },
+  navElement: {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    [theme.breakpoints.up('md')]: {
-      width: '50%'
-    },
-    [theme.breakpoints.down('sm')]: {
-      width: '90%'
+    '&:hover': {
+      cursor: 'pointer'
     }
   },
-  content: {
+  image: {
     height: '100%',
-    width: '80%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    [theme.breakpoints.up('md')]: {
-      marginRight: '10%'
-    },
-    [theme.breakpoints.down('sm')]: {}
-  },
-  contentPara: {
-    fontSize: '2vw',
-    lineHeight: '1.5',
-    color: 'black',
-    fontFamily: 'Source Sans Pro, sans-serif',
-    color: 'black',
-    [theme.breakpoints.up('md')]: {
-      fontSize: '2vw',
-      lineHeight: '1.5'
-    },
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '4vw'
-    }
-  },
-  articleNavContainer: {
-    width: '100px',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    [theme.breakpoints.down('sm')]: {
-      marginTop: '3%'
-    }
-  },
-  aboutMeTitle: {
-    fontSize: '50px',
-    marginTop: '40%'
+    width: 'auto'
   }
 });
+
 class AboutMe extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      selectedArticle: this.articleOne,
+      images: null
+    };
     this.articleOne = 0;
     this.articleTwo = 1;
     this.articleThree = 2;
   }
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     contents: {
-  //       articleOne: true,
-  //       articleTwo: false,
-  //       articleThree: false
-  //     },
-  //     aboutMeComponent: {
-  //       image: null,
-  //       content: null
-  //     },
-  //     canvas: {
-  //       width: 640,
-  //       height: 245
-  //     }
-  //   };
-  //   this.aboutMeJson = [
-  //     {
-  //       content:
-  //         'Hello. I am Taiga Matsumoto. I am Computer Science student at QUT.\n  My hobby is playing tennis, travel, and reading IT articles as well!',
-  //       image: 'taiga_pic_one.jpg'
-  //     },
-  //     {
-  //       content:
-  //         'My hobby is playing and watching tennis! I joined in QUT tennis, and also Brisbane Tennis community. I went to watch Brisbane International Tennis 2018/2019, and Australian Open 2018',
-  //       image: 'tennis_with_mates.jpg'
-  //     },
-  //     {
-  //       content:
-  //         'I also join in many different Hackathons in Brisbane :) I like to interact with new people to get new knowledge and information. This picture is taken when I joined in Brisbane Mobile App Hackathon and our team won the first place !',
-  //       image: 'brisbane_mobile_hackathon.jpg'
-  //     }
-  //   ];
-  //   this.articleIndexArray = [0, 1, 2];
-  //   this.selectArticlesNum = this.selectArticlesNum.bind(this);
-  //   this.importAll = this.importAll.bind(this);
-  //   // this.showImage = this.showImage.bind(this);
-  //   this.getDataUrl = this.getDataUrl.bind(this);
-  //   this.articleOne = 0;
-  //   this.articleTwo = 1;
-  //   this.articleThree = 2;
-  // }
-  // importAll(r) {
-  //   let images = {};
-  //   r.keys().map((item, index) => {
-  //     images[item.replace('./', '')] = r(item);
-  //   });
-  //   return images;
-  // }
 
   render() {
     const { classes } = this.props;
     // const { changeComponentState, image, json } = this.props;
     const { json, currentNumber, images, changeComponentState } = this.props;
-    console.log(currentNumber);
-    console.log(json);
+    // console.log(currentNumber);
+    // console.log(json);
     const currentContent = json[currentNumber].content;
     const currentImage = images[json[currentNumber].image];
     // console.log(this.props.about.content);
-    console.log(this.props);
+    // console.log(this.props);
+    // console.log(currentContent);
+    console.log(`about me ref is`);
+    // console.log(rop);
     return (
-      <AboutMeWrapperParent id="aboutme">
-        <Grid container className={classNames(`${classes.root}`, `${classes.container}`)}>
-          <Grid
-            item
-            xs={12}
-            style={{
-              height: '30vh'
-            }}
-          >
-            <Grid
-              container
-              style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
-            >
+      <div ref={this.props.refProp} className={classes.mainContainer}>
+        <Grid container className={classes.mainContainer}>
+          <Grid item md={12} style={{ height: '30%' }}>
+            <Grid container className={classes.container}>
               <Grid
                 item
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                  // marginTop: '10vh'
-                }}
+                xs={12}
+                md={6}
+                className={classNames(`${classes.item}`, `${classes.titleContainer}`)}
               >
-                <h3 className={classes.aboutMeTitle}>About Me</h3>
+                <Typography component="h3" variant="h2" gutterBottom>
+                  About Me
+                </Typography>
               </Grid>
               <Grid
                 item
                 xs={12}
-                style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  height: '10vh'
-                }}
+                md={6}
+                className={classNames(`${classes.item}`, `${classes.titleContainer}`)}
               >
-                <div className={classes.articleNavContainer}>
-                  <div
-                    className={classNames(`${classes.articleNumStyle}`)}
+                <Grid
+                  container
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'space-around',
+                    alignItems: 'center',
+                    width: '50%'
+                  }}
+                >
+                  <Grid
+                    item
+                    md={4}
                     onClick={() => changeComponentState(this.articleOne)}
+                    className={classes.navElement}
                   >
                     1
-                  </div>
-                  <div
-                    className={classNames(`${classes.articleNumStyle}`)}
+                  </Grid>
+                  <Grid
+                    item
+                    md={4}
                     onClick={() => changeComponentState(this.articleTwo)}
+                    className={classes.navElement}
                   >
                     2
-                  </div>
-                  <div
-                    className={classNames(`${classes.articleNumStyle}`)}
+                  </Grid>
+                  <Grid
+                    item
+                    md={4}
                     onClick={() => changeComponentState(this.articleThree)}
+                    className={classes.navElement}
                   >
                     3
-                  </div>
-                </div>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: '70vh'
-            }}
-          >
-            <Grid
-              container
-              style={{
-                height: '100%'
-              }}
-            >
-              <Grid item xs={12}>
-                <div className={classes.aboutMeInfoMainContainer}>
-                  <div
-                    style={{
-                      height: '100%',
-                      width: '50%',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center'
-                    }}
-                  >
-                    <img src={currentImage} className={classes.image} />
-                  </div>
-                  <div className={classes.contentContainer}>
-                    <div className={classes.content}>
-                      <p className={classes.contentPara}>{currentContent}</p>
-                    </div>
-                  </div>
+          <Grid item md={12} style={{ height: '70%' }}>
+            <Grid container className={classes.container}>
+              <Grid
+                item
+                xs={12}
+                md={6}
+                className={classNames(`${classes.item}`, `${classes.contentContainer}`)}
+              >
+                <img src={currentImage} className={classes.image} />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                md={6}
+                className={classNames(`${classes.item}`, `${classes.contentContainer}`)}
+              >
+                <div className={classes.item} style={{ width: '60%', height: '60%' }}>
+                  <Typography variant="body1" gutterBottom>
+                    {currentContent}
+                  </Typography>
                 </div>
               </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </AboutMeWrapperParent>
+      </div>
     );
   }
 }
