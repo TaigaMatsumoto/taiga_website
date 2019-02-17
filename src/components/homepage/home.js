@@ -1,10 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import MediaQuery from 'react-responsive';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
-import menuIcon from '../../images/menu.png';
 import resume from '../../resume/resume_taiga_matsumoto.pdf';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
@@ -13,6 +8,7 @@ import Typed from 'typed.js';
 import classNames from 'classnames';
 import bgImage from '../../images/wallpaper/ocean_wallpaper.jpg';
 import logo from '../../static/logo.png';
+import Typography from '@material-ui/core/Typography';
 const styles = theme => ({
   container: {
     width: '100%',
@@ -25,7 +21,8 @@ const styles = theme => ({
   homeContainer: {
     width: '100%',
     height: '100%',
-    backgroundImage: `url(${bgImage})`
+    backgroundImage: `url(${bgImage})`,
+    backgroundPosition: 'center center'
   },
   navContainer: {
     display: 'flex',
@@ -52,18 +49,14 @@ const styles = theme => ({
   },
   nav: {
     zIndex: '100',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    color: 'black'
   },
   fontColor: {
     color: 'black'
   },
   aTag: {
-    color: 'black',
-    textDecoration: 'none',
-    '&:hover': {
-      borderBottom: '3px solid white'
-    },
-    zIndex: '100'
+    textDecoration: 'none'
   },
   animatedText: {
     whiteSpace: 'pre',
@@ -176,18 +169,26 @@ class Home extends React.Component {
               >
                 <div className={classes.navContainer}>
                   <div className={classes.nav} onClick={() => scrollDownToElement(homeRef)}>
-                    Home
+                    <Typography component="h3" variant="h5" gutterBottom>
+                      Home
+                    </Typography>
                   </div>
                   <div className={classes.nav} onClick={() => scrollDownToElement(aboutMeRef)}>
-                    About
+                    <Typography component="h3" variant="h5" gutterBottom>
+                      About
+                    </Typography>
                   </div>
                   <div className={classes.nav} onClick={() => scrollDownToElement(portfolioRef)}>
-                    Portfolio
+                    <Typography component="h3" variant="h5" gutterBottom>
+                      Portfolio
+                    </Typography>
                   </div>
                   <div className={classes.nav}>
-                    <a className={classNames(`${classes.aTag}`)} target="_blank" href={resume}>
-                      Resume
-                    </a>
+                    <Typography component="h3" variant="h5" gutterBottom>
+                      <a className={classNames(`${classes.aTag}`)} target="_blank" href={resume}>
+                        Resume
+                      </a>
+                    </Typography>
                   </div>
                 </div>
               </Grid>
@@ -252,13 +253,6 @@ const HomeContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-const HomeWallPaper = styled.div`
-  width: 100%;
-  height: 100%;
-  background-image: url(${bgImage});
-  // filter: blur(8px);
-  tranform: scale(1.1);
 `;
 
 export default withStyles(styles)(Home);

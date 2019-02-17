@@ -5,17 +5,12 @@ import Home from "../components/homepage/home";
 import Blog from "../components/homepage/blog";
 import Portfolio from "../components/homepage/portfolio";
 import AboutMe from "../components/homepage/aboutme";
-import Footer from "../components/homepage/footer";
+
 import styled from "styled-components";
-// import bgImage from "../images/bg_image_one_sunrise.jpg";
-import source from "../static/Sail-Away.mp4";
-import logo from "../static/logo.png";
+
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import classNames from "classnames";
-import { timingSafeEqual } from "crypto";
-import resume from "../resume/resume_taiga_matsumoto.pdf";
-import bgImage from "../images/wallpaper/ocean_wallpaper.jpg";
 // import { StaticQuery, graphql } from 'gatsby'
 // import Img from 'gatsby-image'
 // import { Provider } from 'react-redux'

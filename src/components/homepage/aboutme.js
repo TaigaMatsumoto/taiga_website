@@ -4,9 +4,6 @@ import myPic from '../../images/aboutMe/taiga_pic_one.jpg';
 import MediaQuery from 'react-responsive';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
-import AboutMeOne from './aboutMeComponents/aboutMeOne';
-import AboutMeTwo from './aboutMeComponents/aboutMeTwo';
-import AboutMeThree from './aboutMeComponents/aboutMeThree';
 import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
 // import image from '../../images/aboutMe';
@@ -67,7 +64,7 @@ const styles = theme => ({
   },
   image: {
     height: '100%',
-    width: 'auto'
+    objectFit: 'contain'
   }
 });
 
