@@ -19,7 +19,21 @@ const styles = theme => ({
     },
     [theme.breakpoints.down('sm')]: {
       width: '100%',
-      height: '80%'
+      height: '100%'
+    }
+  },
+  subMainContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    [theme.breakpoints.up('md')]: {
+      width: '80%',
+      height: '70%'
+    },
+    [theme.breakpoints.down('sm')]: {
+      paddingTop: '15%',
+      width: '100%',
+      height: '100%'
     }
   },
   container: {
@@ -158,9 +172,9 @@ class AboutMe extends React.Component {
     // console.log(`about me ref is`);
     // console.log(rop);
     return (
-      <div ref={this.props.refProp} className={classes.mainContainer}>
-        <Grid container className={classes.mainContainer}>
-          <Grid item md={12} className={classes.titleContainer}>
+      <div ref={this.props.refProp} className={classes.mainContainer} name="container 1">
+        <Grid container className={classNames(`${classes.subMainContainer}`)} name="container 2">
+          <Grid item md={12} className={classes.titleContainer} name="container 3">
             <Grid container className={classes.container}>
               <Grid
                 item
