@@ -10,11 +10,17 @@ import Typography from '@material-ui/core/Typography';
 // import aboutMeJson from './aboutMeComponents/aboutMeJson';
 const styles = theme => ({
   mainContainer: {
-    width: '80%',
-    height: '70%',
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    [theme.breakpoints.up('md')]: {
+      width: '80%',
+      height: '70%'
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      height: '80%'
+    }
   },
   container: {
     width: '100%',
@@ -23,23 +29,56 @@ const styles = theme => ({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  content: {
+    [theme.breakpoints.up('md')]: {
+      height: '70%'
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '50%'
+    }
+  },
   item: {
     height: '100%',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
   },
-  titleContainer: {
+  // titleContainer: {
+  //   [theme.breakpoints.up('md')]: {
+  //     height: '100%'
+  //   },
+  //   [theme.breakpoints.down('sm')]: {
+  //     height: '50%'
+  //   }
+  // },
+  title: {
     [theme.breakpoints.up('md')]: {
-      height: '100%'
+      fontSize: '3vw'
     },
     [theme.breakpoints.down('sm')]: {
-      height: '50%'
+      fontSize: '4vw'
     }
   },
+  titleContainer: {
+    [theme.breakpoints.up('md')]: {
+      height: '30%%'
+    },
+    [theme.breakpoints.down('sm')]: {
+      height: '20%'
+    }
+  },
+
   contentContainer: {
     [theme.breakpoints.up('md')]: {
-      height: '100%'
+      height: '70%'
+    },
+    [theme.breakpoints.down('sm')]: {
+      height: '80%'
+    }
+  },
+  content: {
+    [theme.breakpoints.up('md')]: {
+      height: '70%'
     },
     [theme.breakpoints.down('sm')]: {
       height: '50%'
@@ -55,6 +94,12 @@ const styles = theme => ({
     alignItemsS: 'center'
   },
   navElement: {
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.5vw'
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '3vw'
+    },
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
@@ -63,8 +108,27 @@ const styles = theme => ({
     }
   },
   image: {
-    height: '100%',
-    objectFit: 'contain'
+    [theme.breakpoints.up('md')]: {
+      width: '90%',
+      objectFit: 'contain'
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '60%',
+      objectFit: 'contain'
+    }
+  },
+  flexAllCenter: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  contentPara: {
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1vw'
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '4vw'
+    }
   }
 });
 
@@ -91,12 +155,12 @@ class AboutMe extends React.Component {
     // console.log(this.props.about.content);
     // console.log(this.props);
     // console.log(currentContent);
-    console.log(`about me ref is`);
+    // console.log(`about me ref is`);
     // console.log(rop);
     return (
       <div ref={this.props.refProp} className={classes.mainContainer}>
         <Grid container className={classes.mainContainer}>
-          <Grid item md={12} style={{ height: '30%' }}>
+          <Grid item md={12} className={classes.titleContainer}>
             <Grid container className={classes.container}>
               <Grid
                 item
@@ -104,7 +168,7 @@ class AboutMe extends React.Component {
                 md={6}
                 className={classNames(`${classes.item}`, `${classes.titleContainer}`)}
               >
-                <Typography component="h3" variant="h2" gutterBottom>
+                <Typography component="h3" variant="h2" className={classes.title}>
                   About Me
                 </Typography>
               </Grid>
@@ -151,13 +215,13 @@ class AboutMe extends React.Component {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item md={12} style={{ height: '70%' }}>
+          <Grid item md={12} className={classes.contentContainer}>
             <Grid container className={classes.container}>
               <Grid
                 item
                 xs={12}
                 md={6}
-                className={classNames(`${classes.item}`, `${classes.contentContainer}`)}
+                className={classNames(`${classes.content}`, `${classes.flexAllCenter}`)}
               >
                 <img src={currentImage} className={classes.image} />
               </Grid>
@@ -165,10 +229,10 @@ class AboutMe extends React.Component {
                 item
                 xs={12}
                 md={6}
-                className={classNames(`${classes.item}`, `${classes.contentContainer}`)}
+                className={classNames(`${classes.content}`, `${classes.flexAllCenter}`)}
               >
                 <div className={classes.item} style={{ width: '60%', height: '60%' }}>
-                  <Typography variant="body1" gutterBottom>
+                  <Typography variant="body1" className={classes.contentPara}>
                     {currentContent}
                   </Typography>
                 </div>

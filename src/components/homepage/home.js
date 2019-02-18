@@ -33,8 +33,8 @@ const styles = theme => ({
       fontSize: '2vw'
     },
     [theme.breakpoints.down('sm')]: {
-      width: '50vw',
-      fontSize: '3vw'
+      width: '90%',
+      fontSize: '1vw'
     }
   },
   logo: {
@@ -49,11 +49,19 @@ const styles = theme => ({
   },
   nav: {
     zIndex: '100',
-    cursor: 'pointer',
-    color: 'black'
+    cursor: 'pointer'
+  },
+  navFont: {
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.5vw'
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '6vw'
+    }
   },
   fontColor: {
-    color: 'black'
+    color: 'white',
+    textShadow: '-1px 0 black, 0 1px black, 1px 0 black, 0 -1px black'
   },
   aTag: {
     textDecoration: 'none'
@@ -129,7 +137,7 @@ class Home extends React.Component {
   }
   render() {
     const { classes } = this.props;
-    console.log(this.props);
+    // console.log(this.props);
     const { aboutMeRef, homeRef, portfolioRef } = this.props.componentsRefs;
     const { scrollDownToElement } = this.props;
     return (
@@ -169,23 +177,42 @@ class Home extends React.Component {
               >
                 <div className={classes.navContainer}>
                   <div className={classes.nav} onClick={() => scrollDownToElement(homeRef)}>
-                    <Typography component="h3" variant="h5" gutterBottom>
+                    <Typography
+                      component="h3"
+                      variant="h6"
+                      className={classNames(`${classes.navFont}`, `${classes.fontColor}`)}
+                    >
                       Home
                     </Typography>
                   </div>
                   <div className={classes.nav} onClick={() => scrollDownToElement(aboutMeRef)}>
-                    <Typography component="h3" variant="h5" gutterBottom>
+                    <Typography
+                      component="h3"
+                      variant="h6"
+                      className={classes.navFont}
+                      className={classNames(`${classes.navFont}`, `${classes.fontColor}`)}
+                    >
                       About
                     </Typography>
                   </div>
                   <div className={classes.nav} onClick={() => scrollDownToElement(portfolioRef)}>
-                    <Typography component="h3" variant="h5" gutterBottom>
+                    <Typography
+                      component="h3"
+                      variant="h6"
+                      className={classes.navFont}
+                      className={classNames(`${classes.navFont}`, `${classes.fontColor}`)}
+                    >
                       Portfolio
                     </Typography>
                   </div>
                   <div className={classes.nav}>
-                    <Typography component="h3" variant="h5" gutterBottom>
-                      <a className={classNames(`${classes.aTag}`)} target="_blank" href={resume}>
+                    <Typography component="h3" variant="h6" className={classes.navFont}>
+                      <a
+                        className={classNames(`${classes.aTag}`)}
+                        target="_blank"
+                        href={resume}
+                        className={classNames(`${classes.navFont}`, `${classes.fontColor}`)}
+                      >
                         Resume
                       </a>
                     </Typography>

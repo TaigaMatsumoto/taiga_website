@@ -42,44 +42,19 @@ const styles = theme => ({
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column'
     }
+  },
+  title: {
+    [theme.breakpoints.up('md')]: {
+      fontSize: '3vw'
+    },
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '4vw'
+    }
   }
 });
 const Portfolio = props => {
   const { classes } = props;
   return (
-    // <PortfolioWrapperParent id="portfolio">
-    //   <PortfolioWrapper>
-    //     <TitleWrapper>
-    //       <MediaQuery minDeviceWidth={768}>
-    //         <Title>
-    //           <div
-    //             style={{ fontSize: '3vw', fontWeight: '400', marginTop: '5%' }}
-    //           >
-    //             Portfolio
-    //           </div>
-    //         </Title>
-    //       </MediaQuery>
-    //       <MediaQuery maxDeviceWidth={767}>
-    //         <Title>
-    //           <div style={{ fontSize: '5vw', fontWeight: '400' }}>Portfolio</div>
-    //         </Title>
-    //       </MediaQuery>
-    //       <PortfolioContent>
-    //         <PortfolioIconWrapper>
-    //           <PortfolioIcon alt="github Mark" src={githubMark} />
-    //         </PortfolioIconWrapper>
-    //         <PortfolioLinksWrapper>
-    //           <PortfolioLink>
-    //             <Link href="https://github.com/taigamatsumoto" target="_blank">
-    //               https://github.com/taigamatsumoto
-    //             </Link>
-    //           </PortfolioLink>
-    //         </PortfolioLinksWrapper>
-    //       </PortfolioContent>
-    //     </TitleWrapper>
-    //     <Works />
-    //   </PortfolioWrapper>
-    // </PortfolioWrapperParent>
     <PortfolioWrapperParent ref={props.refProp}>
       <PortfolioWrapper>
         <Grid
@@ -98,7 +73,7 @@ const Portfolio = props => {
               fontSize: '50px'
             }}
           >
-            <Typography component="h3" variant="h2" gutterBottom>
+            <Typography component="h3" variant="h2" gutterBottom className={classes.title}>
               Portfolio
             </Typography>
           </Grid>
@@ -145,10 +120,6 @@ const PortfolioWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  @media screen and (max-width: 960px) {
-    margin-top: 3%;
-  }
 `;
 const PortfolioContent = styled.div`
   width: 100%;

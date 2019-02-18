@@ -132,8 +132,8 @@ class App extends React.Component {
     this.importAll = this.importAll.bind(this);
   }
   componentDidMount() {
-    console.log(`ref is`);
-    console.log(this.componentsRefs.homeRef.current.offsetTop);
+    // console.log(`ref is`);
+    // console.log(this.componentsRefs.homeRef.current.offsetTop);
     const images = this.importAll(
       require.context("../images/aboutMe", false, /\.(png|jpe?g|svg)$/)
     );
@@ -175,7 +175,7 @@ class App extends React.Component {
     }));
   }
   scrollDownToElement(ref) {
-    console.log(ref.current.offsetTop);
+    // console.log(ref.current.offsetTop);
     ref.current.scrollIntoView({ block: "start", behavior: "smooth" });
   }
 
