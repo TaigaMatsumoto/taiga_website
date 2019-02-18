@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/taiga_website/precache-manifest.912374a58f4f8ea72df37fb297fa21a8.js"
+  "/taiga_website/precache-manifest.2a263be7f3ae5f365fe2ee1c91702adc.js"
 );
 
 workbox.clientsClaim();
