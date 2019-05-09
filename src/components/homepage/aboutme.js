@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames';
 import Typography from '@material-ui/core/Typography';
+import LazyLoad from 'react-lazyload';
 // import image from '../../images/aboutMe';
 // import aboutMeJson from './aboutMeComponents/aboutMeJson';
 const styles = theme => ({
@@ -151,11 +152,19 @@ class AboutMe extends React.Component {
     super(props);
     this.state = {
       selectedArticle: this.articleOne,
-      images: null
+      images: null,
+      imageStatus: 'loading'
     };
     this.articleOne = 0;
     this.articleTwo = 1;
     this.articleThree = 2;
+  }
+  handleImageLoaded() {
+    this.setState({ imageStatus: 'loaded' });
+  }
+
+  handleImageErrored() {
+    this.setState({ imageStatus: 'failed to load' });
   }
 
   render() {
@@ -237,7 +246,10 @@ class AboutMe extends React.Component {
                 md={6}
                 className={classNames(`${classes.content}`, `${classes.flexAllCenter}`)}
               >
-                <img src={currentImage} className={classes.image} />
+                <LazyLoad height={450} offset={100}>
+                  <img src={currentImage} alt={'my image'} className={classes.image} />
+                </LazyLoad>
+                {/* <img src={currentImage}  /> */}
               </Grid>
               <Grid
                 item

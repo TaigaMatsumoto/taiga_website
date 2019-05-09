@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import resume from '../../resume/resume_taiga_matsumoto.pdf';
+import resume from '../../resume/resume.pdf';
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
 import Typed from 'typed.js';

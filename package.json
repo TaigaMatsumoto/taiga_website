@@ -4,11 +4,11 @@
   "private": true,
   "homepage": "https://taigamatsumoto.github.io/taiga_website/",
   "dependencies": {
-    "gh-pages": "^2.0.1",
     "@material-ui/core": "^3.9.1",
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
-    "marked": "^0.5.2",
+    "gh-pages": "^2.0.1",
+    "marked": "^0.6.2",
     "react": "^16.5.0",
     "react-dom": "^16.5.0",
     "react-image": "^2.0.0",
